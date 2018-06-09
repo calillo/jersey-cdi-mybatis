@@ -1,17 +1,23 @@
 package com.rest.api.db.mybatis;
 
 import java.util.Collection;
-import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.jvnet.hk2.annotations.Service;
 
 import com.rest.api.dao.CarDao;
 import com.rest.api.db.mybatis.mapper.CarDaoMapper;
 import com.rest.api.model.Car;
 
-@Service
+@Named
+//@Default
+@Alternative
+@ApplicationScoped
 public class CarDaoBatisImpl implements CarDao {
 
 	private SqlSessionFactory sqlSessionFactory;
@@ -42,13 +48,12 @@ public class CarDaoBatisImpl implements CarDao {
 		}
 	}
 
-	public Car updateCar(long id, Car car) {
+	public void updateCar(long id, Car car) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {			
 			CarDaoMapper mapper = session.getMapper(CarDaoMapper.class);
 			mapper.updateCar(id, car);
 			session.commit();
-			return car;
 		} finally {
 			session.close();
 		}

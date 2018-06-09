@@ -1,14 +1,23 @@
-package com.rest.api.dao;
+package com.rest.api.dao.mock;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.jvnet.hk2.annotations.Service;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 
+import com.rest.api.dao.CarDao;
 import com.rest.api.model.Car;
 
-@Service
-public class CarDaoMockImpl implements CarDao {
+@Named
+//@Default
+@Alternative
+@ApplicationScoped
+public class CarDaoMockImpl implements CarDao, Serializable {
 
 	@Override
 	public Car getCar(long id) {
@@ -21,8 +30,8 @@ public class CarDaoMockImpl implements CarDao {
 	}
 
 	@Override
-	public Car updateCar(long id, Car car) {
-		return new Car(1, "BMW", "320d", 1);
+	public void updateCar(long id, Car car) {
+		;
 	}
 
 	@Override

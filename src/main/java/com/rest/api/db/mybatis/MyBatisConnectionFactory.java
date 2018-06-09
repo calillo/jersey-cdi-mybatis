@@ -8,8 +8,6 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.rest.api.db.mybatis.mapper.CarDaoMapper;
-
 public class MyBatisConnectionFactory {
 
 	private static SqlSessionFactory sqlSessionFactory;
@@ -24,14 +22,14 @@ public class MyBatisConnectionFactory {
 			if (sqlSessionFactory == null) {
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
-				sqlSessionFactory.getConfiguration().addMapper(CarDaoMapper.class);
+				//sqlSessionFactory.getConfiguration().addMapper(CarDaoMapper.class);
 			}
 		}
 
 		catch (FileNotFoundException fileNotFoundException) {
 			fileNotFoundException.printStackTrace();
-		} catch (IOException iOException) {
-			iOException.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
 		}
 	}
 

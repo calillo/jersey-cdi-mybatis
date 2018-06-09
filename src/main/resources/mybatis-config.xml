@@ -18,4 +18,8 @@
 		</environment>
 	</environments>
 
+	<mappers>
+		<package name="com.rest.api.db.mybatis.mapper" />
+	</mappers>
+
 </configuration>
